@@ -1,9 +1,8 @@
-package services
+package mappingservice
 
 import (
 	"dottest/internal/db"
 	"dottest/internal/models"
-	"log"
 )
 
 func AddMapping(domain string, target string) error {
@@ -12,6 +11,5 @@ func AddMapping(domain string, target string) error {
 		Domain: domain,
 		Target: target,
 	})
-	log.Printf("%v", db)
 	return err.Error
 }

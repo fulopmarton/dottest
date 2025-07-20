@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	mappingservice "dottest/internal/services"
 	"fmt"
 	"log"
 	"os"
@@ -15,10 +16,7 @@ func getDefaultDomainName() string {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("Current working directory: %s\n", filepath.Base(cwd))
-	// get the name of the c
-	return cwd
+	return filepath.Base(cwd)
 }
 
 var linkCmd = &cobra.Command{
@@ -27,7 +25,7 @@ var linkCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// var port uint
-		var domainName string = getDefaultDomainName()
+		domainName := getDefaultDomainName()
 		if len(args) < 1 {
 			log.Fatal("You must specify a port to link to the dottest daemon server!")
 		}
@@ -39,6 +37,10 @@ var linkCmd = &cobra.Command{
 			log.Fatalf("Invalid port number: %s", args[0])
 		}
 		fmt.Printf("Linking domain '%s' to port '%d'\n", domainName, port)
+		err = mappingservice.AddMapping(domainName, fmt.Sprintf("http://localhost:%d", port))
+		if err != nil {
+			log.Fatalf("Failed to link domain '%s' to port '%d': %v\n", domainName, port, err)
+		}
 	},
 }
 
