@@ -1,15 +1,21 @@
-package store
+package db
 
 import (
 	"dottest/internal/models"
 	"log"
+	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
-func InitDB(path string) *gorm.DB {
-	db, err := gorm.Open(sqlite.Open(path), &gorm.Config{})
+func InitDB() *gorm.DB {
+	db, err := gorm.Open(
+		sqlite.Open(
+			os.Getenv("DB_NAME"),
+		),
+		&gorm.Config{},
+	)
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
 	}

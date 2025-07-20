@@ -23,12 +23,23 @@ dottest is a local DNS server and reverse proxy that lets you map multiple custo
 
 Now you can access your local apps at `http://sitea.test` and `http://siteb.test`.
 
+## Commands
+
+- **dottest daemon**
+  Runs the dottest servers in the background.
+
+- **dottest link <>**
+
+
 ## Roadmap
 - [x] Basic domain-to-port mapping
 - [x] Ubuntu support
+- [ ] Replace config file with a database
+- [ ] CLI
+- [ ] Automatic setup
 - [ ] Mac support
 - [ ] HTTPS support for local domains
 - [ ] Wildcard domain support
-- [ ] Web UI for managing domain mappings
 - [ ] Distribution
 - [ ] Windows support
+- [ ] Web UI for managing domain mappings
