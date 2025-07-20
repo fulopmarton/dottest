@@ -1,6 +1,7 @@
 package store
 
 import (
+	"dottest/internal/models"
 	"log"
 
 	"gorm.io/driver/sqlite"
@@ -12,7 +13,7 @@ func InitDB(path string) *gorm.DB {
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
 	}
-	if err := db.AutoMigrate(&Mapping{}); err != nil {
+	if err := db.AutoMigrate(&models.Mapping{}); err != nil {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}
 

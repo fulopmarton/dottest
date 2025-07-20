@@ -1,4 +1,4 @@
-package store
+package models
 
 type Mapping struct {
 	ID     uint   `gorm:"primaryKey"`
