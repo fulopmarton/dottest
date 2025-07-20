@@ -1,5 +1,1 @@
-# Mappings between domains and ports
-mappings:
-  "sitea.test": 5173
-  "siteb.test": 8080
 tld: "test"
