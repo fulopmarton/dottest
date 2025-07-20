@@ -1,20 +1,21 @@
 package proxy
 
 import (
+	"dottest/config"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
 )
 
-var routes = map[string]string{
-	"app.test": "http://localhost:3000",
-	"api.test": "http://localhost:4000",
-}
+var routes = config.Mappings
 
 func StartReverseProxy() {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		target, ok := routes[r.Host]
+		log.Printf("Received request for: %s\n", r.Host)
+		targetPort, ok := routes[r.Host]
+		target := fmt.Sprintf("http://localhost:%d", targetPort)
 		if !ok {
 			http.NotFound(w, r)
 			return
@@ -30,4 +31,3 @@ func StartReverseProxy() {
 		log.Fatalf("Failed to start reverse proxy: %v", err)
 	}
 }
-
