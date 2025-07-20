@@ -1,6 +1,7 @@
 package main
 
 import (
+	"dottest/config"
 	"dottest/internal/dns"
 	"dottest/internal/proxy"
 	"log"
@@ -10,6 +11,7 @@ import (
 
 func main() {
 	err := godotenv.Load()
+	log.Printf("Default config: %v", config.DefaultConfig)
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}

@@ -1,10 +1,10 @@
 package dns
 
 import (
+	"dottest/config"
 	"fmt"
 	"log"
 	"os"
-	"strings"
 
 	"github.com/miekg/dns"
 )
@@ -27,8 +27,8 @@ func handleRequest(w dns.ResponseWriter, r *dns.Msg) {
 
 	log.Printf("Received DNS request: %v", r.Question)
 	for _, q := range r.Question {
-		if strings.HasSuffix(q.Name, ".test.") {
-			log.Printf("Handling DNS request for: %s", q.Name)
+		if _, exists := config.DefaultConfig.Mappings[q.Name[:len(q.Name)-1]]; exists {
+			log.Printf("Found mapping for: %s", q.Name)
 			rr, _ := dns.NewRR(q.Name + " A 127.0.0.1")
 			msg.Answer = append(msg.Answer, rr)
 		}
