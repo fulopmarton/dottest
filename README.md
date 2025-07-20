@@ -22,3 +22,8 @@ dottest is a local DNS server and reverse proxy that lets you map multiple custo
    ```
 
 Now you can access your local apps at `http://sitea.test` and `http://siteb.test`.
+
+## Roadmap
+- [x] Basic domain-top-port mapping
+- [ ] HTTPS support for local domains
+- [ ] Web UI for managing domain mappings
