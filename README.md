@@ -28,6 +28,7 @@ Now you can access your local apps at `http://sitea.test` and `http://siteb.test
 - [x] Ubuntu support
 - [ ] Mac support
 - [ ] HTTPS support for local domains
+- [ ] Wildcard domain support
 - [ ] Web UI for managing domain mappings
 - [ ] Distribution
 - [ ] Windows support
