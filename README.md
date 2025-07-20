@@ -37,6 +37,7 @@ Now you can access your local apps at `http://sitea.test` and `http://siteb.test
 - [ ] Replace config file with a database
 - [ ] CLI
 - [ ] Automatic setup
+- [ ] CI/CD
 - [ ] Mac support
 - [ ] HTTPS support for local domains
 - [ ] Wildcard domain support
