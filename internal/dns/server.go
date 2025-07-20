@@ -10,8 +10,9 @@ import (
 )
 
 func StartDNSServer() {
-	dns.HandleFunc(fmt.Sprintf(".%s.", os.Getenv("DEV_TLD")), handleRequest)
-
+	tld := fmt.Sprintf("%s.", os.Getenv("DEV_TLD"))
+	log.Printf("DNS server tld: %s", tld)
+	dns.HandleFunc(tld, handleRequest)
 	server := &dns.Server{Addr: "127.0.0.1:53", Net: "udp"}
 	log.Println("Starting DNS server on :53")
 	err := server.ListenAndServe()
