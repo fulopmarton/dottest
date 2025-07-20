@@ -9,6 +9,7 @@ import (
 
 type Config struct {
 	Mappings map[string]int `yaml:"mappings"`
+	TLD      string         `yaml:"tld"`
 }
 
 func readConfig() *Config {

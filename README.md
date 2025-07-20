@@ -44,4 +44,4 @@ Now you can access your local apps at `http://sitea.test` and `http://siteb.test
 - [ ] Distribution
 - [ ] Windows support
 - [ ] Web UI for managing domain mappings
-- [ ] Startup commands (?)
+- [ ] Startup commands (provide a command that starts the web app with the associated domain on visit) (?)
