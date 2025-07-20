@@ -25,5 +25,8 @@ Now you can access your local apps at `http://sitea.test` and `http://siteb.test
 
 ## Roadmap
 - [x] Basic domain-to-port mapping
+- [x] Ubuntu support
+- [ ] Mac support
+- [ ] Windows support
 - [ ] HTTPS support for local domains
 - [ ] Web UI for managing domain mappings
