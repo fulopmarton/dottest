@@ -8,9 +8,9 @@ import (
 )
 
 func StartDNSServer() {
-	dns.HandleFunc(".", handleRequest)
+	dns.HandleFunc(".test.", handleRequest)
 
-	server := &dns.Server{Addr: ":53", Net: "udp"}
+	server := &dns.Server{Addr: "127.0.0.1:53", Net: "udp"}
 	log.Println("Starting DNS server on :53")
 	err := server.ListenAndServe()
 	if err != nil {
@@ -22,8 +22,10 @@ func handleRequest(w dns.ResponseWriter, r *dns.Msg) {
 	msg := dns.Msg{}
 	msg.SetReply(r)
 
+	log.Printf("Received DNS request: %s", r.Question)
 	for _, q := range r.Question {
 		if strings.HasSuffix(q.Name, ".test.") {
+			log.Printf("Handling DNS request for: %s", q.Name)
 			rr, _ := dns.NewRR(q.Name + " A 127.0.0.1")
 			msg.Answer = append(msg.Answer, rr)
 		}
