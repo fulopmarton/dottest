@@ -14,7 +14,9 @@ func InitDB() *gorm.DB {
 		sqlite.Open(
 			os.Getenv("DB_NAME"),
 		),
-		&gorm.Config{},
+		&gorm.Config{
+			// Logger: logger.Default.LogMode(logger.Silent),
+		},
 	)
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)

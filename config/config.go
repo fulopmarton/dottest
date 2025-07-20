@@ -21,7 +21,6 @@ func readConfig() *Config {
 	if err != nil {
 		log.Fatalf("Error parsing config file: %v", err)
 	}
-	log.Printf("Read config: %v", config)
 	return &config
 }
 

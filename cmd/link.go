@@ -37,7 +37,7 @@ var linkCmd = &cobra.Command{
 			log.Fatalf("Invalid port number: %s", args[0])
 		}
 		fmt.Printf("Linking domain '%s' to port '%d'\n", domainName, port)
-		err = mappingservice.AddMapping(domainName, fmt.Sprintf("http://localhost:%d", port))
+		err = mappingservice.InteractiveUpsertDomain(domainName, fmt.Sprintf("http://localhost:%d", port))
 		if err != nil {
 			log.Fatalf("Failed to link domain '%s' to port '%d': %v\n", domainName, port, err)
 		}
