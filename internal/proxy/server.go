@@ -29,7 +29,7 @@ func StartReverseProxy() {
 		log.Fatalf("Failed to start reverse proxy: %v", err)
 	}
 	// https
-	certFile := fmt.Sprintf("./%s.pem")
+	certFile := fmt.Sprintf("./%s.pem", r.Host)
 	keyFile := fmt.Sprintf("./%s-key.pem")
 	http.ListenAndServeTLS(":443", certFile, keyFile, handler)
 }
