@@ -34,6 +34,7 @@ Now you can link your domains to ports using the `dottest link` command.
 - [ ] Automatic setup
 - [ ] CI/CD
 - [ ] Mac support
+- [ ] TLD Customization
 - [ ] Wildcard domain support
 - [ ] Distribution
 - [ ] Windows support

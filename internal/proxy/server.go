@@ -2,6 +2,7 @@ package proxy
 
 import (
 	mappingservice "dottest/internal/services"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -27,4 +28,8 @@ func StartReverseProxy() {
 	if err != nil {
 		log.Fatalf("Failed to start reverse proxy: %v", err)
 	}
+	// https
+	certFile := fmt.Sprintf("./%s.pem")
+	keyFile := fmt.Sprintf("./%s-key.pem")
+	http.ListenAndServeTLS(":443", certFile, keyFile, handler)
 }
