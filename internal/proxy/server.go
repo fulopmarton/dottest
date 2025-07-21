@@ -1,26 +1,25 @@
 package proxy
 
 import (
-	"dottest/config"
-	"fmt"
+	mappingservice "dottest/internal/services"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strings"
 )
 
-var routes = config.Mappings
+// var routes = config.Mappings
 
 func StartReverseProxy() {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Received request for: %s\n", r.Host)
-		targetPort, ok := routes[r.Host]
-		target := fmt.Sprintf("http://localhost:%d", targetPort)
-		if !ok {
+		domain := strings.TrimSuffix(r.Host, ".test")
+		mapping := mappingservice.FindByDomain(domain)
+		if mapping == nil {
 			http.NotFound(w, r)
 			return
 		}
-		url, _ := url.Parse(target)
+		url, _ := url.Parse(mapping.Target)
 		proxy := httputil.NewSingleHostReverseProxy(url)
 		proxy.ServeHTTP(w, r)
 	})

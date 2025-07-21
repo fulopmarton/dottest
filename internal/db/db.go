@@ -7,6 +7,7 @@ import (
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func InitDB() *gorm.DB {
@@ -15,7 +16,7 @@ func InitDB() *gorm.DB {
 			os.Getenv("DB_NAME"),
 		),
 		&gorm.Config{
-			// Logger: logger.Default.LogMode(logger.Silent),
+			Logger: logger.Default.LogMode(logger.Silent),
 		},
 	)
 	if err != nil {

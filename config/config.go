@@ -8,8 +8,7 @@ import (
 )
 
 type Config struct {
-	Mappings map[string]int `yaml:"mappings"`
-	TLD      string         `yaml:"tld"`
+	TLD string `yaml:"tld"`
 }
 
 func readConfig() *Config {
@@ -25,7 +24,4 @@ func readConfig() *Config {
 	return &config
 }
 
-var (
-	DefaultConfig *Config = readConfig()
-	Mappings              = DefaultConfig.Mappings
-)
+var DefaultConfig *Config = readConfig()
