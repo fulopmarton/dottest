@@ -21,18 +21,19 @@ Now you can link your domains to ports using the `dottest link` command.
 - **dottest daemon**
   Runs the dottest servers in the background.
 
-- **dottest link <>**
+- **dottest link <port> [domain]**
+  Will redirect requests made to domain to localhost:port. If domain is not provided, it will use the name of the folder in which the command is run.
 
 
 ## Roadmap
 - [x] Basic domain-to-port mapping
 - [x] Ubuntu support
-- [ ] Replace config file with a database
-- [ ] CLI
+- [x] Replace config file with a database
+- [x] CLI
+- [ ] HTTPS support for local domains
 - [ ] Automatic setup
 - [ ] CI/CD
 - [ ] Mac support
-- [ ] HTTPS support for local domains
 - [ ] Wildcard domain support
 - [ ] Distribution
 - [ ] Windows support

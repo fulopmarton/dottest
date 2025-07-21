@@ -9,8 +9,6 @@ import (
 	"strings"
 )
 
-// var routes = config.Mappings
-
 func StartReverseProxy() {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		domain := strings.TrimSuffix(r.Host, ".test")
