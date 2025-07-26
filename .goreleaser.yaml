@@ -1,0 +1,36 @@
+project_name: dottest
+release:
+  github:
+    owner: fulopmarton
+    name: dottest
+
+builds:
+  - id: dottest
+    main: .
+    binary: dottest
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - id: default
+    format: tar.gz
+    files:
+      - dottest.service
+
+nfpms:
+  - id: deb
+    formats: [deb]
+    section: utils
+    maintainer: Fülöp Márton <fulopmarton99@gmail.com>
+    description: A utility for binding local domains to ports.
+    vendor: Fulop Marton
+    homepage: https://github.com/fulopmarton/dottest
+    license: MIT
+    bindir: /usr/bin
+    contents:
+      - src: ./dottest.service
+        dst: /etc/systemd/system/dottest.service
+        type: config

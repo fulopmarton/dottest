@@ -9,37 +9,19 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"os/exec"
 	"runtime/debug"
 	"strings"
 )
 
-func getCaRootFile() string {
-	output, err := exec.Command("mkcert", "-CAROOT").Output()
-	if err != nil {
-		log.Fatalf("Failed to get CA root directory: %v", err)
-	}
-	caFile := fmt.Sprintf("%s/rootCA.pem", strings.TrimSpace(string(output)))
-	return caFile
-}
-
 // TODO: Implement a thread safe cache for certifications, add it to loadCertForDomain
 func loadCertForDomain(domain string) (*tls.Certificate, error) {
-	certFile := fmt.Sprintf("./%s.pem", domain)
-	keyFile := fmt.Sprintf("./%s-key.pem", domain)
+	certFile := fmt.Sprintf("./data/certs/%s.pem", domain)
+	keyFile := fmt.Sprintf("./data/certs/%s-key.pem", domain)
 
-	// log.Fatalf("certs: %v, %v", certFile, keyFile)
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {
 		return nil, err
 	}
-	// caFile := getCaRootFile()
-	// caCert, err := os.ReadFile(caFile)
-	// if err != nil {
-	// 	log.Fatalf("Failed to read root CA file %s: %v", caFile, err)
-	// 	// caFile := getCaRootFile()
-	// }
-	// cert.Certificate = append(cert.Certificate, caCert)
 	return &cert, nil
 }
 
