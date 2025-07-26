@@ -30,7 +30,7 @@ Now you can link your domains to ports using the `dottest link` command.
 - [x] Ubuntu support
 - [x] Replace config file with a database
 - [x] CLI
-- [ ] HTTPS support for local domains
+- [x] HTTPS support for local domains
 - [ ] Automatic setup
 - [ ] CI/CD
 - [ ] Mac support
