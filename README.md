@@ -40,3 +40,5 @@ Now you can link your domains to ports using the `dottest link` command.
 - [ ] Windows support
 - [ ] Web UI for managing domain mappings
 - [ ] Startup commands (provide a command that starts the web app with the associated domain on visit) (?)
+- [ ] Optimize performance
+  - [ ] Cache certificates in memory
