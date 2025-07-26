@@ -2,8 +2,8 @@ package db
 
 import (
 	"dottest/internal/models"
+	"dottest/utils"
 	"log"
-	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -13,7 +13,7 @@ import (
 func InitDB() *gorm.DB {
 	db, err := gorm.Open(
 		sqlite.Open(
-			os.Getenv("DB_NAME"),
+			utils.GetAppDataPath("data", "dottest.db"),
 		),
 		&gorm.Config{
 			Logger: logger.Default.LogMode(logger.Silent),
