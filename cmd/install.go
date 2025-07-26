@@ -17,5 +17,5 @@ var installCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(linkCmd)
+	rootCmd.AddCommand(installCmd)
 }
