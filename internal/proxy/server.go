@@ -3,6 +3,7 @@ package proxy
 import (
 	"crypto/tls"
 	mappingservice "dottest/internal/services"
+	"dottest/utils"
 	"fmt"
 	"log"
 	"net"
@@ -15,8 +16,9 @@ import (
 
 // TODO: Implement a thread safe cache for certifications, add it to loadCertForDomain
 func loadCertForDomain(domain string) (*tls.Certificate, error) {
-	certFile := fmt.Sprintf("./data/certs/%s.pem", domain)
-	keyFile := fmt.Sprintf("./data/certs/%s-key.pem", domain)
+	certFile := utils.GetAppDataPath(fmt.Sprintf("./data/certs/%s.pem", domain))
+
+	keyFile := utils.GetAppDataPath(fmt.Sprintf("./data/certs/%s-key.pem", domain))
 
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {
