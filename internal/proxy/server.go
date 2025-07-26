@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"os"
 	"os/exec"
+	"runtime/debug"
 	"strings"
 )
 
@@ -28,17 +28,18 @@ func loadCertForDomain(domain string) (*tls.Certificate, error) {
 	certFile := fmt.Sprintf("./%s.pem", domain)
 	keyFile := fmt.Sprintf("./%s-key.pem", domain)
 
-	caFile := getCaRootFile()
 	// log.Fatalf("certs: %v, %v", certFile, keyFile)
 	cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 	if err != nil {
 		return nil, err
 	}
-	caCert, err := os.ReadFile(caFile)
-	if err != nil {
-		log.Fatalf("Failed to read root CA file %s: %v", caFile, err)
-	}
-	cert.Certificate = append(cert.Certificate, caCert)
+	// caFile := getCaRootFile()
+	// caCert, err := os.ReadFile(caFile)
+	// if err != nil {
+	// 	log.Fatalf("Failed to read root CA file %s: %v", caFile, err)
+	// 	// caFile := getCaRootFile()
+	// }
+	// cert.Certificate = append(cert.Certificate, caCert)
 	return &cert, nil
 }
 
@@ -52,6 +53,11 @@ func getCertificate(clientHello *tls.ClientHelloInfo) (*tls.Certificate, error) 
 }
 
 func StartReverseProxy() {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Printf("Panic recovered: %v\n%s", r, debug.Stack())
+		}
+	}()
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		domain := strings.TrimSuffix(r.Host, ".test")
 		mapping := mappingservice.FindByDomain(domain)
