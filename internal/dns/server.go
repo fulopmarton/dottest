@@ -5,14 +5,13 @@ import (
 	mappingservice "dottest/internal/services"
 	"fmt"
 	"log"
-	"os"
 	"strings"
 
 	"github.com/miekg/dns"
 )
 
 func StartDNSServer() {
-	tld := fmt.Sprintf("%s.", os.Getenv("DEV_TLD"))
+	tld := fmt.Sprintf("%s.", "test")
 	log.Printf("DNS server tld: %s", tld)
 	dns.HandleFunc(tld, handleRequest)
 	server := &dns.Server{Addr: "127.0.0.1:53", Net: "udp"}
