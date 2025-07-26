@@ -10,4 +10,4 @@ sudo systemctl restart systemd-resolved
 echo "[*] Installing mkcert root CA..."
 mkcert -install || true
 
-dottest install
+sudo dottest install
