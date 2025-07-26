@@ -24,4 +24,6 @@ func readConfig() *Config {
 	return &config
 }
 
-var DefaultConfig *Config = readConfig()
+var DefaultConfig *Config = &Config{
+	TLD: "test",
+}
