@@ -30,6 +30,11 @@ nfpms:
     homepage: https://github.com/fulopmarton/dottest
     license: MIT
     bindir: /usr/bin
+    dependencies:
+      - mkcert
+      - libnss3-tools
+    scripts:
+      postinstall: ./scripts/postinstall.sh
     contents:
       - src: ./dottest.service
         dst: /etc/systemd/system/dottest.service

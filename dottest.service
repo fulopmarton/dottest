@@ -1,12 +1,12 @@
 [Unit]
-Description=MyApp Daemon Service
+Description=DotTest Daemon Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/myapp daemon
+ExecStart=/usr/bin/dottest daemon
 Restart=on-failure
-User=myappuser
-Group=myappuser
+User=root
+Group=root
 
 [Install]
 WantedBy=multi-user.target
