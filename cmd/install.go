@@ -14,7 +14,7 @@ var installCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Installing dottest...")
 		certificateFolder := utils.GetAppDataPath("./data/certs/")
-		os.MkdirAll(certificateFolder, 0755)
+		os.MkdirAll(certificateFolder, 0777)
 	},
 }
 

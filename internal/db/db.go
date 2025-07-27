@@ -10,10 +10,18 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+var db *gorm.DB
+
 func InitDB() *gorm.DB {
-	db, err := gorm.Open(
+	if db != nil {
+		return db
+	}
+	dbPath := utils.GetAppDataPath("data", "dottest.db")
+	// fmt.Printf("Opening database at %s\n", dbPath)
+	var err error
+	db, err = gorm.Open(
 		sqlite.Open(
-			utils.GetAppDataPath("data", "dottest.db"),
+			dbPath,
 		),
 		&gorm.Config{
 			Logger: logger.Default.LogMode(logger.Silent),
