@@ -38,8 +38,9 @@ Now you can link your domains to ports using the `dottest link` command.
 - [x] CI/CD
 - [ ] Mac support
 - [ ] Wildcard domain support
-- [ ] Distribution
 - [ ] Windows support
+- [ ] Option to override headers to match local domain
+- [ ] Distribution
 - [ ] Web UI for managing domain mappings
 - [ ] Startup commands (provide a command that starts the web app with the associated domain on visit) (?)
 - [ ] Optimize performance

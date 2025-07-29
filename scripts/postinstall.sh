@@ -11,3 +11,4 @@ echo "[*] Installing mkcert root CA..."
 mkcert -install || true
 
 sudo dottest install
+sudo touch /etc/dottest/data/dottest.db
